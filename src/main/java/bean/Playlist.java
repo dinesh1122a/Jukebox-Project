@@ -6,7 +6,7 @@ public class Playlist {
     private int id;
     private String name;
     private String dateOfCreation;
-    Song song;
+    private Song song;
 
     public Playlist(int id, String name, String dateOfCreation, Song song) {
         this.id = id;
