@@ -1,18 +1,19 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Playlist {
     private int id;
     private String name;
     private String dateOfCreation;
-    private Song song;
+    private ArrayList<Song> songArrayList;
 
-    public Playlist(int id, String name, String dateOfCreation, Song song) {
+    public Playlist(int id, String name, String dateOfCreation, ArrayList<Song> songArrayList) {
         this.id = id;
         this.name = name;
         this.dateOfCreation = dateOfCreation;
-        this.song = song;
+        this.songArrayList = songArrayList;
     }
 
     public int getId() {
@@ -39,12 +40,12 @@ public class Playlist {
         this.dateOfCreation = dateOfCreation;
     }
 
-    public Song getSong() {
-        return song;
+    public ArrayList<Song> getSongArrayList() {
+        return songArrayList;
     }
 
-    public void setSong(Song song) {
-        this.song = song;
+    public void setSongArrayList(ArrayList<Song> songArrayList) {
+        this.songArrayList = songArrayList;
     }
 
     @Override
@@ -52,12 +53,12 @@ public class Playlist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return id == playlist.id && Objects.equals(name, playlist.name) && Objects.equals(dateOfCreation, playlist.dateOfCreation) && Objects.equals(song, playlist.song);
+        return id == playlist.id && Objects.equals(name, playlist.name) && Objects.equals(dateOfCreation, playlist.dateOfCreation) && Objects.equals(songArrayList, playlist.songArrayList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, dateOfCreation, song);
+        return Objects.hash(id, name, dateOfCreation, songArrayList);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class Playlist {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateOfCreation='" + dateOfCreation + '\'' +
-                ", song=" + song +
+                ", songArrayList=" + songArrayList +
                 '}';
     }
 }
