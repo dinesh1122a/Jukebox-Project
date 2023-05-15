@@ -1,4 +1,4 @@
-package juke;
+package bean;
 
 import java.util.Objects;
 
