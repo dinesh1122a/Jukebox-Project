@@ -13,7 +13,7 @@ public class MusicRunner {
         DatabaseConnectionUtil databaseConnectionUtil=new DatabaseConnectionUtil();
         Connection connection=databaseConnectionUtil.connectToDatabase();
         SongDao songDao=new SongDao();
-        List<Song> songList=songDao.getSongList(connection);
+        List<Song> songList=songDao.getSongList();
         DisplayUtil displayUtil=new DisplayUtil();
         displayUtil.display(songList);
 
