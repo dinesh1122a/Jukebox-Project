@@ -9,9 +9,9 @@ public class Song {
     private String genre;
     private  String album;
     private String duration;
-    private long url;
+    private String url;
 
-    public Song(int id, String name, String artist, String genre, String album, String duration, long url) {
+    public Song(int id, String name, String artist, String genre, String album, String duration, String url) {
         this.id = id;
         this.name = name;
         this.artist = artist;
@@ -73,11 +73,11 @@ public class Song {
         this.duration = duration;
     }
 
-    public long getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(long url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 

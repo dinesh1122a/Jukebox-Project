@@ -28,8 +28,8 @@ public class SongDao {
             song.setGenre(resultSet.getString(4));
             song.setAlbum(resultSet.getString(5));
             song.setDuration(resultSet.getString(6));
-            song.setUrl(resultSet.getLong(7));
-            song =new Song(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),resultSet.getLong(7));
+            song.setUrl(resultSet.getString(7));
+            song =new Song(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));
             songList.add(song);
         }
         return songList;
