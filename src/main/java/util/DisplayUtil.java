@@ -3,7 +3,7 @@ package util;
 import bean.Song;
 
 import java.util.List;
-import java.util.Scanner;
+
 
 public class DisplayUtil {
     public void display(List<Song> songList){
