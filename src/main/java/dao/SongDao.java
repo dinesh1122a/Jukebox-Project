@@ -14,7 +14,7 @@ import static util.DatabaseConnectionUtil.connectToDatabase;
 
 public class SongDao {
     Connection connection;
-    public List<Song> getSongList(Connection dbConnection) throws SQLException {
+    public List<Song> getSongList() throws SQLException {
 
         connection=connectToDatabase();
         List<Song>songList=new ArrayList<>();
