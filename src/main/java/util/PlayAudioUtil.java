@@ -72,7 +72,7 @@ public class PlayAudioUtil {
 
     public void playSong(List<Song> songList) {
 
-        System.out.println(songList.size());
+
         Iterator<Song> iterator = songList.iterator();
         String url="";
         try {
