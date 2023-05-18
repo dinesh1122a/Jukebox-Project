@@ -16,6 +16,10 @@ public class Playlist {
         this.songArrayList = songArrayList;
     }
 
+    public Playlist() {
+
+    }
+
     public int getId() {
         return id;
     }
