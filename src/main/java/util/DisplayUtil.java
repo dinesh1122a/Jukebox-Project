@@ -2,16 +2,6 @@ package util;
 
 import bean.Song;
 import dao.SongDao;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,15 +11,18 @@ import java.util.Scanner;
 public class DisplayUtil {
 
     Scanner scanner=new Scanner(System.in);
+    Scanner scanner1=new Scanner(System.in);
+    Scanner scanner2=new Scanner(System.in);
+
 
     public DisplayUtil()  {
     }
     public void mainMenu() throws Exception {
         PlayAudioUtil playAudioUtil = new PlayAudioUtil();
         SongDao songDao = new SongDao();
-        System.out.println("*******************************************************************");
-        System.out.println("***************** WELCOME TO JUKEBOX********************************");
-        System.out.println("********************************************************************");
+        System.out.println("********************+++++++++++++++++++++++****************************");
+        System.out.println("*****************+++ WELCOME TO JUKEBOX+++********************************");
+        System.out.println("*****************+++++++++++++++++++++++++++*************************");
         System.out.println("1.Display the songList ");
         System.out.println("2.Play a specific song");
         System.out.println("3.Play all the songs");
@@ -38,7 +31,7 @@ public class DisplayUtil {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                System.out.println("Press 1");
+                System.out.println("enter 1");
                 DisplayUtil displayUtil = new DisplayUtil();
                 List<Song> songList = songDao.getSongList();
                 displayUtil.display(songList);
@@ -54,45 +47,44 @@ public class DisplayUtil {
                 System.out.println("-----------------------------");
                 System.out.println("1.search by songName");
                 System.out.println("2.search by artist");
-                System.out.println("2.search by genre");
-                System.out.println("2.search by album");
+                System.out.println("3.search by genre");
+                System.out.println("4.search by album");
                 int option1 =scanner.nextInt();
                 switch (option1){
                     case 1:
                         System.out.println("song name list");
                         System.out.println("Tu-aake-Dekhle 2-gulaab2 kanna pe baal wo Noor gaddi piche naa badmosh chora" );
                         System.out.println("enter song name ");
-                        String name=scanner.nextLine();
+                        String name=scanner1.nextLine();
                         songDao.searchByName(name);
                         break;
                     case 2:
                         System.out.println("artist list");
                         System.out.println("king billa pranjal dhaiya ap dhillon khan bhaini Mc square");
                         System.out.println("enter artist name");
-                        String artist=scanner.nextLine();
+                        String artist=scanner2.nextLine();
                         songDao.searchByArtist(artist);
                         break;
                     case 3:
                         System.out.println("genre list");
                         System.out.println("pop haryanvi mix punjabi");
                         System.out.println("enter genre name");
-                        String genre=scanner.nextLine();
+                        String genre=scanner1.nextLine();
                         songDao.searchByGenre(genre);
                         break;
                     case 4:
                         System.out.println("album list");
                         System.out.println("stage carnival white hill heart scycostyle zee music");
                         System.out.println("enter album name");
-                        String album=scanner.nextLine();
+                        String album=scanner2.nextLine();
                         songDao.searchByAlbum(album);
+
                         break;
                     default:
                         System.out.println("invalid option plz enter correct option");
                         break;
 
                 }
-
-
 
         }
     }
