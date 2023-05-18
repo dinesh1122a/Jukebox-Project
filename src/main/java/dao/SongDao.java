@@ -2,6 +2,7 @@ package dao;
 
 import bean.Song;
 
+
 import util.DatabaseConnectionUtil;
 import util.PlayAudioUtil;
 
@@ -90,7 +91,7 @@ public class SongDao {
         playAudioUtil.playSong(songList);
         return songList;
     }
-    public List<Song> searchByAlbum(String Song) throws Exception {
+    public List<Song> searchByAlbum(String Song) throws SQLException{
         DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
         Connection connection = databaseConnectionUtil.connectToDatabase();
         Song song;
@@ -101,6 +102,7 @@ public class SongDao {
             song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
             songList.add(song);
         }
+
         playAudioUtil.playSong(songList);
         return songList;
     }
