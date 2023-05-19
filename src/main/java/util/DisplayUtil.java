@@ -3,21 +3,24 @@ package util;
 import bean.Song;
 import dao.PlaylistDao;
 import dao.SongDao;
+
 import java.util.List;
 import java.util.Scanner;
+
 public class DisplayUtil {
-    Scanner scanner=new Scanner(System.in);
-    Scanner scanner1=new Scanner(System.in);
-    Scanner scanner2=new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
+    Scanner scanner1 = new Scanner(System.in);
+    Scanner scanner2 = new Scanner(System.in);
 
     SongDao songDao = new SongDao();
 
 
-    public DisplayUtil()  {
+    public DisplayUtil() {
     }
+
     public void mainMenu() throws Exception {
         PlayAudioUtil playAudioUtil = new PlayAudioUtil();
-        DisplayUtil displayUtil=new DisplayUtil();
+        DisplayUtil displayUtil = new DisplayUtil();
         int choose;
         do {
 
@@ -34,7 +37,7 @@ public class DisplayUtil {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    List<Song> songList = songDao.getSongList();
+                    List<Song> songList = SongDao.getSongList();
                     displayUtil.display(songList);
                 case 2:
                     System.out.println("enter song Id");
@@ -42,7 +45,7 @@ public class DisplayUtil {
                     playAudioUtil.playSong(Id);
                 case 3:
                     System.out.println("Playing all the songs");
-                    List<Song> list = songDao.getSongList();
+                    List<Song> list = SongDao.getSongList();
                     playAudioUtil.playSong(list);
                 case 4:
                     System.out.println("-----------------------------");
@@ -92,7 +95,7 @@ public class DisplayUtil {
 
                         case 1:
                             System.out.println("view playlist");
-                            List<Song> songLists = songDao.getSongList();
+                            List<Song> songLists = SongDao.getSongList();
 
 
                             displayUtil.display(songLists);
@@ -113,17 +116,17 @@ public class DisplayUtil {
 
             }
             System.out.println("Enter 1 to mainMenu 0 for Exit");
-            choose=scanner2.nextInt();
+            choose = scanner2.nextInt();
         }
-        while (choose==1);
+        while (choose == 1);
 
-        }
+    }
 
 
-    public void display(List<Song> songList){
+    public void display(List<Song> songList) {
         System.out.println("------------------------------------------------------------------------------");
         System.out.printf("|\t%-5s|\t%-17s|\t%-14s|\t%-10s|\t%-14s|\t%-14s|\t%-14s|\n", "songId", "songName", "Artist,", "Album", "Genre", "Duration", "Url");
-        for (Song song:songList){
+        for (Song song : songList) {
             System.out.printf("|\t%-5s|\t%-17s|\t%-14s|\t%-10s|\t%-14s|\t%-14s|\t%-14s|\n", song.getId(), song.getName(), song.getArtist(), song.getAlbum(), song.getGenre(), song.getDuration(), song.getUrl());
         }
 

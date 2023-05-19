@@ -7,7 +7,7 @@ public class Song {
     private String name;
     private String artist;
     private String genre;
-    private  String album;
+    private String album;
     private String duration;
     private String url;
 
@@ -96,14 +96,6 @@ public class Song {
 
     @Override
     public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", artist='" + artist + '\'' +
-                ", genre='" + genre + '\'' +
-                ", album='" + album + '\'' +
-                ", duration='" + duration + '\'' +
-                ", url='" + url + '\'' +
-                '}';
+        return "Song{" + "id=" + id + ", name='" + name + '\'' + ", artist='" + artist + '\'' + ", genre='" + genre + '\'' + ", album='" + album + '\'' + ", duration='" + duration + '\'' + ", url='" + url + '\'' + '}';
     }
 }

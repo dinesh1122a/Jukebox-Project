@@ -18,7 +18,7 @@ public class PlayAudioUtil {
 
     public void playSong(int id) {
         DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = databaseConnectionUtil.connectToDatabase();
+        Connection connection = DatabaseConnectionUtil.connectToDatabase();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select  url from song where songId= '" + id + "';");
@@ -54,8 +54,7 @@ public class PlayAudioUtil {
                     default:
                         System.out.println("Your Choice is Wrong Enter Correct choice");
                 }
-                if (response.equals("Q") || response.equals("q"))
-                    break;
+                if (response.equals("Q") || response.equals("q")) break;
             }
 
         } catch (UnsupportedAudioFileException ex) {
@@ -74,7 +73,7 @@ public class PlayAudioUtil {
 
 
         Iterator<Song> iterator = songList.iterator();
-        String url="";
+        String url = "";
         try {
             while (iterator.hasNext()) {
                 url = iterator.next().getUrl();
@@ -109,8 +108,7 @@ public class PlayAudioUtil {
                     if (response.equals("Q") || response.equals("q") || response.equals("N") || response.equals("n"))
                         break;
                 }
-                if (response.equals("Q") || response.equals("q"))
-                break;
+                if (response.equals("Q") || response.equals("q")) break;
             }
         } catch (UnsupportedAudioFileException e) {
             throw new RuntimeException(e);

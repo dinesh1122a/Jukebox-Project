@@ -67,11 +67,6 @@ public class Playlist {
 
     @Override
     public String toString() {
-        return "Playlist{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", dateOfCreation='" + dateOfCreation + '\'' +
-                ", songArrayList=" + songArrayList +
-                '}';
+        return "Playlist{" + "id=" + id + ", name='" + name + '\'' + ", dateOfCreation='" + dateOfCreation + '\'' + ", songArrayList=" + songArrayList + '}';
     }
 }

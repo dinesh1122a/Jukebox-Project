@@ -1,8 +1,6 @@
 package dao;
 
 import bean.Song;
-
-
 import util.DatabaseConnectionUtil;
 import util.PlayAudioUtil;
 
@@ -12,14 +10,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import static util.DatabaseConnectionUtil.connectToDatabase;
 
 
 public class SongDao {
-    PlayAudioUtil playAudioUtil=new PlayAudioUtil();
     public static Connection connection = DatabaseConnectionUtil.connectToDatabase();
+    PlayAudioUtil playAudioUtil = new PlayAudioUtil();
 
     public static List<Song> getSongList() throws SQLException {
 
@@ -42,9 +39,10 @@ public class SongDao {
         return songList;
 
     }
+
     public List<Song> searchByName(String Song) throws Exception {
         DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = databaseConnectionUtil.connectToDatabase();
+        Connection connection = connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
@@ -58,11 +56,9 @@ public class SongDao {
     }
 
 
-
-
     public List<Song> searchByArtist(String Song) throws Exception {
         DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = databaseConnectionUtil.connectToDatabase();
+        Connection connection = connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
@@ -76,24 +72,24 @@ public class SongDao {
     }
 
 
-
     public List<Song> searchByGenre(String Song) throws Exception {
         DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = databaseConnectionUtil.connectToDatabase();
+        Connection connection = connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from song where genre = '" + Song + "';");
         while (resultSet.next()) {
-             song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
+            song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
             songList.add(song);
         }
         playAudioUtil.playSong(songList);
         return songList;
     }
-    public List<Song> searchByAlbum(String Song) throws SQLException{
+
+    public List<Song> searchByAlbum(String Song) throws SQLException {
         DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = databaseConnectionUtil.connectToDatabase();
+        Connection connection = connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
