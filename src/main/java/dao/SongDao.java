@@ -1,14 +1,14 @@
 package dao;
 
 import bean.Song;
+
 import util.PlayAudioUtil;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static util.DatabaseConnectionUtil.connectToDatabase;
 
@@ -34,7 +34,16 @@ public class SongDao {
             song.setUrl(resultSet.getString(7));
             song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
             songList.add(song);
+
+            Comparator<Song> artistComparator=((o1, o2) -> o1.getGenre().compareTo(o2.getGenre()));
+            Collections.sort(songList,artistComparator);
+//            Comparator<Song> idcComparator=((o1, o2) -> o1.getId()- o2.getId());
+//            Collections.sort(songList,idcComparator);
+
+
         }
+
+
         return songList;
 
     }
@@ -89,10 +98,11 @@ public class SongDao {
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from song where album = '" + Song + "';");
-        while (resultSet.next()) {
-            song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
-            songList.add(song);
-        }
+
+            while (resultSet.next()) {
+                song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
+                songList.add(song);
+            }
 
         playAudioUtil.playSong(songList);
         return songList;
