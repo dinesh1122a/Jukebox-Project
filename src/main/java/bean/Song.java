@@ -1,6 +1,6 @@
 package bean;
 
-import java.util.Objects;
+
 
 public class Song {
     private int id;
@@ -81,18 +81,6 @@ public class Song {
         this.url = url;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Song song = (Song) o;
-        return id == song.id && Objects.equals(name, song.name) && Objects.equals(artist, song.artist) && Objects.equals(genre, song.genre) && Objects.equals(album, song.album) && Objects.equals(duration, song.duration) && Objects.equals(url, song.url);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, artist, genre, album, duration, url);
-    }
 
     @Override
     public String toString() {

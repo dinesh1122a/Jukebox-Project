@@ -1,7 +1,7 @@
 package bean;
 
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 public class Playlist {
     private int id;
@@ -52,18 +52,6 @@ public class Playlist {
         this.songArrayList = songArrayList;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Playlist playlist = (Playlist) o;
-        return id == playlist.id && Objects.equals(name, playlist.name) && Objects.equals(dateOfCreation, playlist.dateOfCreation) && Objects.equals(songArrayList, playlist.songArrayList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, dateOfCreation, songArrayList);
-    }
 
     @Override
     public String toString() {

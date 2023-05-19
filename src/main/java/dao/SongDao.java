@@ -2,8 +2,11 @@ package dao;
 
 import bean.Song;
 
+import exception.AlbumNotFoundException;
+import exception.ArtistNotFoundException;
+import exception.GenreNotFoundException;
+import exception.SongNameNotFound;
 import util.PlayAudioUtil;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,10 +21,11 @@ public class SongDao {
 
     PlayAudioUtil playAudioUtil = new PlayAudioUtil();
 
+
     public static List<Song> getSongList() throws SQLException {
-        connection=connectToDatabase();
+        connection = connectToDatabase();
         List<Song> songList = new ArrayList<>();
-        Statement statement= connection.createStatement();
+        Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from song");
         while (resultSet.next()) {
             Song song = new Song();
@@ -35,30 +39,38 @@ public class SongDao {
             song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
             songList.add(song);
 
-            Comparator<Song> artistComparator=((o1, o2) -> o1.getGenre().compareTo(o2.getGenre()));
-            Collections.sort(songList,artistComparator);
+            Comparator<Song> genreComparator = ((o1, o2) -> o1.getGenre().compareTo(o2.getGenre()));
+            songList.sort(genreComparator);
+
+
+
         }
         return songList;
 
     }
 
     public List<Song> searchByName(String Song) throws Exception {
-       connection=connectToDatabase();
+        connection = connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("select * from song where name = '" + Song + "';");
-        while (resultSet.next()) {
-            song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
-            songList.add(song);
+        if (songList.size()==0 ) {
+            throw new SongNameNotFound("song not found");
+        }else {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from song where name = '" + Song + "';");
+            while (resultSet.next()) {
+                song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
+                songList.add(song);
+            }
         }
+
+
         playAudioUtil.playSong(songList);
         return songList;
     }
 
-
-    public List<Song> searchByArtist(String Song) throws Exception {
-       connection=connectToDatabase();
+    public List<Song> searchByArtist(String Song) throws SQLException,ArtistNotFoundException{
+        connection = connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
@@ -66,6 +78,9 @@ public class SongDao {
         while (resultSet.next()) {
             song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
             songList.add(song);
+        }
+        if (songList.size() < 1 ) {
+            throw new ArtistNotFoundException("Artist not found");
         }
         playAudioUtil.playSong(songList);
         return songList;
@@ -82,20 +97,25 @@ public class SongDao {
             song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
             songList.add(song);
         }
+        if(songList.size()==0){
+            throw new GenreNotFoundException("NOT found");
+        }
         playAudioUtil.playSong(songList);
         return songList;
     }
 
-    public List<Song> searchByAlbum(String Song) throws SQLException {
+    public List<Song> searchByAlbum(String Song) throws Exception {
         connection=connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from song where album = '" + Song + "';");
-
             while (resultSet.next()) {
                 song = new Song(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
-                songList.add(song);
+                    songList.add(song);
+            }
+            if (songList.size()==0){
+                throw new AlbumNotFoundException("not found");
             }
 
         playAudioUtil.playSong(songList);
