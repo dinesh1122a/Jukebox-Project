@@ -37,13 +37,7 @@ public class SongDao {
 
             Comparator<Song> artistComparator=((o1, o2) -> o1.getGenre().compareTo(o2.getGenre()));
             Collections.sort(songList,artistComparator);
-//            Comparator<Song> idcComparator=((o1, o2) -> o1.getId()- o2.getId());
-//            Collections.sort(songList,idcComparator);
-
-
         }
-
-
         return songList;
 
     }
