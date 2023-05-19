@@ -15,14 +15,14 @@ import static util.DatabaseConnectionUtil.connectToDatabase;
 
 
 public class SongDao {
-    public static Connection connection = DatabaseConnectionUtil.connectToDatabase();
+    static Connection connection;
+
     PlayAudioUtil playAudioUtil = new PlayAudioUtil();
 
     public static List<Song> getSongList() throws SQLException {
-
-        connection = connectToDatabase();
+        connection=connectToDatabase();
         List<Song> songList = new ArrayList<>();
-        Statement statement = connection.createStatement();
+        Statement statement= connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from song");
         while (resultSet.next()) {
             Song song = new Song();
@@ -41,8 +41,7 @@ public class SongDao {
     }
 
     public List<Song> searchByName(String Song) throws Exception {
-        DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = connectToDatabase();
+       connection=connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
@@ -57,8 +56,7 @@ public class SongDao {
 
 
     public List<Song> searchByArtist(String Song) throws Exception {
-        DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = connectToDatabase();
+       connection=connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
@@ -73,8 +71,7 @@ public class SongDao {
 
 
     public List<Song> searchByGenre(String Song) throws Exception {
-        DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = connectToDatabase();
+      connection=connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();
@@ -88,8 +85,7 @@ public class SongDao {
     }
 
     public List<Song> searchByAlbum(String Song) throws SQLException {
-        DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = connectToDatabase();
+        connection=connectToDatabase();
         Song song;
         List<Song> songList = new ArrayList<>();
         Statement statement = connection.createStatement();

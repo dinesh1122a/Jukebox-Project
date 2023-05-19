@@ -13,12 +13,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import static util.DatabaseConnectionUtil.connectToDatabase;
+
 public class PlayAudioUtil {
     static Scanner scanner = new Scanner(System.in);
+    Connection connection;
 
     public void playSong(int id) {
-        DatabaseConnectionUtil databaseConnectionUtil = new DatabaseConnectionUtil();
-        Connection connection = DatabaseConnectionUtil.connectToDatabase();
+        connection=connectToDatabase();
+
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select  url from song where songId= '" + id + "';");
@@ -68,10 +71,7 @@ public class PlayAudioUtil {
         }
     }
 
-
     public void playSong(List<Song> songList) {
-
-
         Iterator<Song> iterator = songList.iterator();
         String url = "";
         try {

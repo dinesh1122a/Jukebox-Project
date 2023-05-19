@@ -10,7 +10,9 @@ public class DatabaseConnectionUtil {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jukeboxdb", "root", "Mechanical@10#");
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        }catch (SQLException e){
             System.out.println(e);
         }
         return connection;
