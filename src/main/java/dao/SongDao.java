@@ -1,5 +1,6 @@
 package dao;
 
+<<<<<<< HEAD
 import bean.Song;
 
 import exception.AlbumNotFoundException;
@@ -122,5 +123,8 @@ public class SongDao {
         return songList;
     }
 
+=======
+public class SongDao {
+>>>>>>> origin/master
 
 }

@@ -1,5 +1,6 @@
 package dao;
 
+<<<<<<< HEAD
 import bean.Playlist;
 import util.DatabaseConnectionUtil;
 
@@ -47,4 +48,7 @@ public class PlaylistDao {
 
     }
 
+=======
+public class PlaylistDao {
+>>>>>>> origin/master
 }
